@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    padding: 10px;
+    background-color: black;
+    color: aqua;
+    position: sticky;
+    width: 100%;
+}
+
+li{
+    display: inline-block;
+    margin: 20px 20px;
+    font-size: 2vw;
+}
+
+#MyImg{
+    display: inline-block;
+    height: 36vh;
+    width: auto;
+}
+
+p{
+    font-size: 30px;
+    position: relative;
+    left: 13vw;
+    bottom: 150px;
+}
+
+.require{
+    background-color: brown;
+    color:yellow;
+    display: inline-block;
+    height: 36vh;
+    width: 100%;
+    padding-right: 5px;
+}
