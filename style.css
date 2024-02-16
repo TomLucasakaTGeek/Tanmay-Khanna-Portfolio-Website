@@ -1,6 +1,5 @@
 *{
     margin: 0;
-    padding: 0;
 }
 
 header{
@@ -31,10 +30,21 @@ p{
 }
 
 .require{
-    background-color: brown;
-    color:yellow;
+    background-color: grey;
+    color: yellow;
     display: inline-block;
     height: 36vh;
     width: 100%;
     padding-right: 5px;
+}
+.projects{
+    display: flex;
+    justify-content: space-between;
+}
+button{
+    border: 2px solid red;
+    background-color: pink;
+    color: yellow;
+    border-radius: 15%;
+    padding: 8px 35px 8px 35px;
 }
