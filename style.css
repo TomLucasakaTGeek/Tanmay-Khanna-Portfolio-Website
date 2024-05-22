@@ -29,12 +29,11 @@ li:hover{
 .Second{
     font-size: x-large;
     display: grid;
-    grid-template-columns: 400px 700px;
+    grid-template-columns: 400px 600px;
 }
 .project{
-    margin: 0px 0px 0px 15px;
-    width: 600px;
-    display: inline-block;
+    margin: 10px;
+    width: 580px;
     border: 2px solid aliceblue;
     color: aliceblue;
     font-size: large;
