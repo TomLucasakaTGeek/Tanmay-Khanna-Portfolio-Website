@@ -21,18 +21,21 @@ li:hover{
     color: white;
     font-size: x-large;
     display: grid;
-    grid-template-columns: 300px 700px;
+    grid-template-columns: 400px 700px;
 }
 .media{
-    height: 300px;
+    width: 400px;
 }
-.second{
+.Second{
     font-size: x-large;
     display: grid;
-    grid-template-columns: 300px 700px;
+    grid-template-columns: 400px 700px;
 }
 .project{
+    margin: 0px 0px 0px 15px;
+    width: 600px;
     display: inline-block;
     border: 2px solid aliceblue;
     color: aliceblue;
+    font-size: large;
 }
