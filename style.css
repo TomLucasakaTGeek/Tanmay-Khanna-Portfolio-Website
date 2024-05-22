@@ -3,13 +3,36 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
 }
 .navbar{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     color:blue;
+    font-size: larger;
 }
 li:hover{
     cursor: pointer;
+}
+.first{
+    background-color: red;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    font-size: x-large;
+    display: grid;
+    grid-template-columns: 300px 700px;
+}
+.media{
+    height: 300px;
+}
+.second{
+    font-size: x-large;
+    display: grid;
+    grid-template-columns: 300px 700px;
+}
+.project{
+    display: inline-block;
+    border: 2px solid aliceblue;
+    color: aliceblue;
 }
