@@ -11,6 +11,7 @@
     justify-content: space-evenly;
     color:blue;
     font-size: x-large;
+    cursor: pointer;
 }
 
 .first{
