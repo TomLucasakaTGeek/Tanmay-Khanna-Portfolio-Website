@@ -25,7 +25,7 @@
 }
 
 .pfp {
-    width: 400px;
+    width: 30vw;
     border-radius: 50%;
     border: 5px solid cornflowerblue;
 }
@@ -49,15 +49,14 @@
 }
 
 .Third {
-    height: 40vh;
     overflow: auto; /* Enable horizontal scrolling */
     white-space: nowrap; /* Prevent line breaks */
     padding: 10px; /* Add so */
 }
 .Third img {
     /* Style individual images (adjust as needed) */
-    width: 230px;
-    height: 200px;
+    width: 15vw;
+    height: 30vh;
     margin-right: 10px; /* Add spacing between images */
 }
 .Third::-webkit-scrollbar {
