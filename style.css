@@ -69,7 +69,7 @@
 }
 
 .Fourth{
-    font-size: x-large;
+    font-size: larger;
     display: grid;
     grid-template-columns: 400px 600px;
 }
