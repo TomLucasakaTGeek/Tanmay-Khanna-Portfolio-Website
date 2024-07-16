@@ -40,18 +40,10 @@
     grid-template-columns: 400px 600px;
 }
 
-.desc{
-    margin: 10px;
-    width: 580px;
-    border: 2px solid aliceblue;
-    color: aliceblue;
-    font-size: large;
-}
-
 .Third {
     overflow: auto; /* Enable horizontal scrolling */
     white-space: nowrap; /* Prevent line breaks */
-    padding: 10px; /* Add so */
+    padding: 10px; 
 }
 .Third img {
     /* Style individual images (adjust as needed) */
@@ -60,12 +52,21 @@
     margin-right: 10px; /* Add spacing between images */
 }
 .Third::-webkit-scrollbar {
-    width: 10px;
+    width: 10px;          
 }
+    /* adding color to scrollbar */
 .Third::-webkit-scrollbar-thumb {
     background: skyblue; 
     border-radius: 10px;
-  }
+}
+
+.desc{
+    margin: 10px;
+    width: 580px;
+    border: 2px solid aliceblue;
+    color: aliceblue;
+    font-size: larger;
+}
 
 .Fourth{
     font-size: x-large;
