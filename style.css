@@ -26,7 +26,7 @@
     font-size: x-large;
     cursor: pointer;
 }
-.navbar:hover a{
+.navbar a:hover{
     transition: all 400ms;
     scale: 120%;
     border-bottom: 1px solid blue;
