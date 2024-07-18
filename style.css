@@ -63,18 +63,17 @@
 }
 .Third img {
     /* Style individual images (adjust as needed) */
-    width: 15vw;
+    width: 18vw;
     height: 30vh;
-    margin-right: 10px; /* Add spacing between images */
+    margin-right: 12px; /* Add spacing between images */
 }
 .Third::-webkit-scrollbar {
-    width: 10px;          
+    height: 8px;
 }
     /* adding color to scrollbar */
 .Third::-webkit-scrollbar-thumb {
     background: lime; 
-    border-radius: 15px;
-    width: 10px;
+    border-radius: 5px;
 }
 
 .desc{
