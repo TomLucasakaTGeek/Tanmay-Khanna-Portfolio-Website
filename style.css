@@ -27,15 +27,17 @@
     cursor: pointer;
 }
 .navbar a:hover{
-    transition: all 400ms;
+    transition: all 200ms;
     scale: 120%;
-    border-bottom: 1px solid blue;
+    border-bottom: 2px solid purple;
+    text-shadow: 1px 1px red, 0 0 1em rgb(107, 5, 100), 0 0 0.2em rgb(164, 6, 117);
 }
 
 .First{
     font-family: 'Arial, Helvetica, sans-serif';
-    color: rgb(156, 7, 156);
+    color: white;
     font-size: x-large;
+    text-shadow: 1px 1px red, 0 0 1em rgb(107, 5, 100), 0 0 0.2em rgb(164, 6, 117);
     display: flex;
     justify-content: space-around;
     flex-direction: row;
@@ -44,7 +46,7 @@
 .pfp {
     width: 30vw;
     border-radius: 50%;
-    border: 5px solid cornflowerblue;
+    border: 5px solid rgb(191, 195, 199);
 }
 
 .media{
@@ -63,7 +65,7 @@
     padding: 10px; 
 }
 .Third img {
-    /* Style individual images (adjust as needed) */
+    /* Style individual images */
     width: 18vw;
     height: 30vh;
     margin-right: 12px; /* Add spacing between images */
@@ -71,7 +73,7 @@
 .Third::-webkit-scrollbar {
     height: 8px;
 }
-    /* adding color to scrollbar */
+    /* adding color to scrollbar thumb */
 .Third::-webkit-scrollbar-thumb {
     background: lime; 
     border-radius: 5px;
@@ -99,4 +101,6 @@
     color: whitesmoke;
     align-items: center;
     background-color: brown;
+    font-size: larger;
+    font-weight: bold;
 }
