@@ -23,18 +23,21 @@
     flex-direction: row;
     justify-content: space-evenly;
     color: #DC1FFF;
-    font-size: xx-large;
+    font-size: x-large;
     cursor: pointer;
 }
 .navbar a:hover{
     transition: all 200ms;
     scale: 120%;
     border-bottom: 4px solid blue;
+    background-color: white;
+    color: blue;
+    padding: 10px;
 }
 
 .First {
     font-family: 'Arial, Helvetica, sans-serif';
-    color: #A3EEFF;
+    color: greenyellow;
     font-size: x-large;
     display: flex;
     justify-content: space-around;
