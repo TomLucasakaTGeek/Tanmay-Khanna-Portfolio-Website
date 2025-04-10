@@ -29,7 +29,7 @@
 .navbar a:hover{
     transition: all 200ms;
     scale: 120%;
-    border-bottom: 2px solid blue;
+    border-bottom: 4px solid blue;
 }
 
 .First {
