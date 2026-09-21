@@ -1,760 +1,1043 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tanmay Khanna - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
-            --text-light: #f1f5f9;
-            --text-gray: #94a3b8;
-            --accent: #22d3ee;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 5%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6rem 5% 2rem;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(34, 211, 238, 0.1));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.3), transparent);
-            border-radius: 50%;
-            top: -250px;
-            right: -250px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--text-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h2 {
-            font-size: 1.8rem;
-            color: var(--text-gray);
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            animation: fadeInUp 0.8s ease-out 0.6s backwards;
-        }
-
-        .btn {
-            padding: 0.9rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-light);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 5rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text p {
-            color: var(--text-gray);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .about-image {
-            display: flex;
-            justify-content: center;
-        }
-
-        .profile-img {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            padding: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 6rem;
-            color: var(--text-light);
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
-        }
-
-        .skill-card h3 {
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .skill-card ul {
-            list-style: none;
-        }
-
-        .skill-card li {
-            color: var(--text-gray);
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .skill-card li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-        }
-
-        .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-content h3 {
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-        }
-
-        .project-content p {
-            color: var(--text-gray);
-            margin-bottom: 1rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            background: rgba(99, 102, 241, 0.2);
-            color: var(--accent);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-        }
-
-        /* Certificates Section */
-        .certificates-wrapper {
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .certificates-scroll {
-            display: flex;
-            gap: 2rem;
-            overflow-x: auto;
-            padding: 1rem 0 1.5rem;
-            scroll-behavior: smooth;
-        }
-
-        /* Custom Colorful Scrollbar */
-        .certificates-scroll::-webkit-scrollbar {
-            height: 12px;
-        }
-
-        .certificates-scroll::-webkit-scrollbar-track {
-            background: var(--bg-card);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .certificates-scroll::-webkit-scrollbar-thumb {
-            background: linear-gradient(90deg, 
-                #6366f1 0%, 
-                #8b5cf6 25%, 
-                #d946ef 50%, 
-                #f43f5e 75%, 
-                #22d3ee 100%);
-            border-radius: 10px;
-            border: 2px solid var(--bg-card);
-        }
-
-        .certificates-scroll::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(90deg, 
-                #4f46e5 0%, 
-                #7c3aed 25%, 
-                #c026d3 50%, 
-                #e11d48 75%, 
-                #06b6d4 100%);
-        }
-
-        /* Firefox scrollbar */
-        .certificates-scroll {
-            scrollbar-width: thin;
-            scrollbar-color: #6366f1 var(--bg-card);
-        }
-
-        .certificate-card {
-            min-width: 320px;
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
-            flex-shrink: 0;
-        }
-
-        .certificate-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-            border-color: var(--primary);
-        }
-
-        .certificate-image {
-            height: 180px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-        }
-
-        .certificate-content {
-            padding: 1.5rem;
-        }
-
-        .certificate-content h3 {
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-            font-size: 1.2rem;
-        }
-
-        .certificate-issuer {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-
-        .certificate-date {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-content p {
-            color: var(--text-gray);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-light);
-            text-decoration: none;
-            padding: 1rem 1.5rem;
-            background: var(--bg-card);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
-        }
-
-        .contact-link:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-card);
-            color: var(--text-gray);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero h2 {
-                font-size: 1.3rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            nav ul {
-                gap: 1rem;
-            }
-
-            .profile-img {
-                width: 200px;
-                height: 200px;
-                font-size: 4rem;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tanmay Khanna — AI Systems Engineer</title>
+  <meta name="description" content="Tanmay Khanna is an early-career AI Systems Engineer in Lucknow, India. He builds systems that connect data, software, AI, automation, and intelligent agents.">
+  <meta name="author" content="Tanmay Khanna">
+  <meta name="theme-color" content="#E6EAEE">
+
+  <!-- Replace with the final public URL when the site is deployed -->
+  <link rel="canonical" href="https://tomlucasakatgeek.github.io/Tanmay-Khanna-Portfolio-Website/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tanmay Khanna">
+  <meta property="og:title" content="Tanmay Khanna — AI Systems Engineer">
+  <meta property="og:description" content="I build systems that connect data, software, AI, automation, and intelligent agents.">
+  <meta property="og:url" content="https://tomlucasakatgeek.github.io/Tanmay-Khanna-Portfolio-Website/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tanmay Khanna — AI Systems Engineer">
+  <meta name="twitter:description" content="I build systems that connect data, software, AI, automation, and intelligent agents.">
+  <meta name="twitter:creator" content="@KTanmay_hex">
+
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Tanmay Khanna",
+    "jobTitle": "AI Systems Engineer",
+    "worksFor": { "@type": "Organization", "name": "InfoBay.AI" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Lucknow", "addressCountry": "IN" },
+    "url": "https://tomlucasakatgeek.github.io/Tanmay-Khanna-Portfolio-Website/",
+    "sameAs": [
+      "https://github.com/TomLucasakaTGeek",
+      "https://www.linkedin.com/in/khannatanmay/",
+      "https://x.com/KTanmay_hex"
+    ]
+  }
+  </script>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="logo">SMK</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#certificates">Certificates</a></li>
-                <li><a href="#contact">Contact</a></li>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav" data-nav>
+    <div class="nav__bar wrap">
+      <a class="nav__brand" href="#top" aria-label="Tanmay Khanna, back to top">
+        <svg class="nav__mark" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+          <path d="M5 6h6v6h8M11 12v6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="2.5" y="3.5" width="5" height="5" fill="var(--film)" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="9" y="9.5" width="5" height="5" fill="var(--cobalt)" stroke="var(--cobalt)" stroke-width="1.5"/>
+          <rect x="16.5" y="9.5" width="5" height="5" fill="var(--film)" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="9" y="16" width="5" height="5" fill="var(--film)" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <span>Tanmay Khanna</span>
+      </a>
+
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" data-nav-toggle>
+        <span class="sr-only">Menu</span>
+        <span class="nav__bars" aria-hidden="true"><i></i><i></i></span>
+      </button>
+
+      <nav id="nav-menu" class="nav__menu" aria-label="Primary" data-nav-menu>
+        <ul>
+          <li><a href="#about" data-nav-link="about">About</a></li>
+          <li><a href="#experience" data-nav-link="experience">Experience</a></li>
+          <li><a href="#systems" data-nav-link="systems">Systems</a></li>
+          <li><a href="#research" data-nav-link="research">Research</a></li>
+          <li><a href="#opensource" data-nav-link="opensource">Open Source</a></li>
+          <li><a href="#projects" data-nav-link="projects">Projects</a></li>
+          <li><a href="#contact" data-nav-link="contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="nav__progress" aria-hidden="true"></div>
+  </header>
+
+  <nav class="rail" aria-hidden="true" data-rail></nav>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="hero__where mono">Tanmay Khanna, Lucknow, India</p>
+          <h1 id="hero-title" class="hero__title">AI Systems Engineer</h1>
+          <p class="hero__lede">Building intelligent systems across data, AI, agents, automation, and open source.</p>
+          <p class="hero__intro">
+            I work at the intersection of the layers that have to hold together before an AI system is useful.
+            Pick a stage below to find it on the map.
+          </p>
+
+          <ul class="chain" aria-label="The stages I work across">
+            <li><button type="button" class="chain__btn" data-stage="0">data</button></li>
+            <li><button type="button" class="chain__btn" data-stage="1">software</button></li>
+            <li><button type="button" class="chain__btn" data-stage="2">AI</button></li>
+            <li><button type="button" class="chain__btn" data-stage="3">agents</button></li>
+            <li><button type="button" class="chain__btn" data-stage="4">systems</button></li>
+            <li><button type="button" class="chain__btn" data-stage="5">evaluation</button></li>
+          </ul>
+
+          <div class="actions">
+            <a class="btn btn--primary" href="#systems">View work</a>
+            <a class="btn" href="https://github.com/TomLucasakaTGeek" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="btn" href="https://www.linkedin.com/in/khannatanmay/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="btn" href="https://x.com/KTanmay_hex" target="_blank" rel="noopener noreferrer">X<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="btn" data-config="resume" href="#" target="_blank" rel="noopener noreferrer" hidden>Resume<span class="sr-only"> (opens in a new tab)</span></a>
+          </div>
+        </div>
+
+        <figure class="hero__viz panel" aria-labelledby="viz-name">
+          <canvas id="net-canvas" aria-hidden="true"></canvas>
+          <figcaption class="viz__cap">
+            <span class="viz__name mono" id="viz-name">data</span>
+            <span class="viz__text" id="viz-text" aria-live="polite">Raw audio, images, video, and medical files, filtered, checked, and deduplicated until a dataset can be trusted.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="sheet" id="about" data-sheet="about" data-rail-label="about" aria-labelledby="about-title">
+      <div class="wrap sheet__grid">
+        <div class="sheet__tab"><span class="sheet__idx mono">01</span><span class="sheet__name mono">about</span></div>
+        <div class="sheet__body">
+          <h2 id="about-title" class="statement">I build systems that connect data, software, AI, automation, and intelligent agents.</h2>
+
+          <div class="about__grid">
+            <div class="prose">
+              <p>
+                I like to understand a system from first principles before I add anything to it. That habit shows up
+                everywhere in my work: reading a codebase until its structure makes sense, breaking a vague problem
+                into constraints, and turning a complicated idea into software that runs.
+              </p>
+              <p>
+                So far my work spans backend systems, AI applications, RAG, agents, MCP, multimodal data,
+                automation, data processing, open source, and evaluation. It moves between low-level engineering, like
+                deduplicating audio in bulk, and higher-level AI design, like deciding how an agent should behave when
+                a fixed workflow breaks.
+              </p>
+              <p>
+                I'm early in my career. My current role at InfoBay.AI began in 2026, so what I bring is depth in a few
+                areas, breadth across the stack, and a steady rate of learning. The rest of this page shows the work
+                instead of claiming it.
+              </p>
+            </div>
+
+            <figure class="term instrument" data-typer aria-label="Terminal session: whoami, location, focus, and status">
+              <div class="term__bar" aria-hidden="true"><i></i><i></i><i></i><span class="mono">lab</span></div>
+              <div class="term__screen mono" aria-hidden="true">
+                <p><span class="term__p">tanmay@lab:~$</span> <span data-type="whoami"></span></p>
+                <p class="term__o"><span data-type="Tanmay Khanna, AI Systems Engineer" data-fast></span></p>
+                <p><span class="term__p">tanmay@lab:~$</span> <span data-type="cat focus.txt"></span></p>
+                <p class="term__o"><span data-type="multimodal data, agent architectures, evaluation" data-fast></span></p>
+                <p><span class="term__p">tanmay@lab:~$</span> <span data-type="cat status.txt"></span></p>
+                <p class="term__o"><span data-type="early career, learning fast, building in public" data-fast></span><span class="term__caret"></span></p>
+              </div>
+              <p class="sr-only">whoami: Tanmay Khanna, AI Systems Engineer. Focus: multimodal data, agent architectures, evaluation. Status: early career, learning fast, building in public.</p>
+            </figure>
+          </div>
+
+          <dl class="threads">
+            <div><dt>Data infrastructure</dt><dd>Filtering, structuring, quality checks, deduplication, and archival for multimodal datasets.</dd></div>
+            <div><dt>Backend and AI applications</dt><dd>APIs, RAG pipelines, and tool-using services built with FastAPI, Node.js, and LangGraph.</dd></div>
+            <div><dt>Agents and automation</dt><dd>Deterministic browser automation with agentic fallback, MCP integrations, and human approval where it matters.</dd></div>
+            <div><dt>Evaluation and research</dt><dd>Measuring what a model actually does, and analysing where and why it fails.</dd></div>
+            <div><dt>Open source</dt><dd>Reading, refactoring, and contributing to real codebases.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="sheet" id="experience" data-sheet="experience" data-rail-label="experience" aria-labelledby="experience-title">
+      <div class="wrap sheet__grid">
+        <div class="sheet__tab"><span class="sheet__idx mono">02</span><span class="sheet__name mono">experience</span></div>
+        <div class="sheet__body">
+          <div class="role">
+            <h2 id="experience-title" class="role__title">Junior AI Engineer</h2>
+            <p class="role__org">InfoBay.AI</p>
+            <p class="role__meta mono">Lucknow, India. <time>2026</time> to present.</p>
+          </div>
+
+          <p class="lede">I work across the data lifecycle required to make multimodal AI systems possible.</p>
+          <div class="prose prose--wide">
+            <p>
+              The job is not scraping. It's everything between raw files and a dataset a model can be trained or
+              evaluated on: deciding what belongs, structuring it, checking it, removing what shouldn't be there, and
+              moving it safely at scale. I've worked with audio, images, video, and multimodal datasets.
+            </p>
+          </div>
+
+          <div class="tabs" data-tabs>
+            <div class="tabs__list" role="tablist" aria-label="Areas of work at InfoBay.AI">
+              <button role="tab" type="button" id="tab-data" aria-controls="panel-data" aria-selected="true">Data processing</button>
+              <button role="tab" type="button" id="tab-audio" aria-controls="panel-audio" aria-selected="false" tabindex="-1">Audio</button>
+              <button role="tab" type="button" id="tab-images" aria-controls="panel-images" aria-selected="false" tabindex="-1">Images</button>
+              <button role="tab" type="button" id="tab-video" aria-controls="panel-video" aria-selected="false" tabindex="-1">Video</button>
+              <button role="tab" type="button" id="tab-medical" aria-controls="panel-medical" aria-selected="false" tabindex="-1">Medical</button>
+              <button role="tab" type="button" id="tab-infra" aria-controls="panel-infra" aria-selected="false" tabindex="-1">Automation and infrastructure</button>
+            </div>
+
+            <div class="tabs__panel panel" role="tabpanel" id="panel-data" aria-labelledby="tab-data" tabindex="0">
+              <h3>Data processing</h3>
+              <ul class="ticks">
+                <li>Raw data filtering</li>
+                <li>Structuring raw data into consistent formats</li>
+                <li>Quality checks</li>
+                <li>Metadata processing</li>
+                <li>PII removal</li>
+                <li>Deduplication</li>
+                <li>Sampling</li>
+                <li>Automating the repeatable parts</li>
+              </ul>
+              <p class="note">Each step exists to make the next one trustworthy.</p>
+            </div>
+
+            <div class="tabs__panel panel" role="tabpanel" id="panel-audio" aria-labelledby="tab-audio" tabindex="0" hidden>
+              <h3>Audio</h3>
+              <ul class="ticks">
+                <li>Large-scale audio processing</li>
+                <li>Audio sampling</li>
+                <li>Bulk audio deduplication</li>
+                <li>Cosine-similarity-based duplicate detection</li>
+                <li>TB-scale processing workflows</li>
+              </ul>
+              <p class="note">Exact hashes only catch byte-identical files. Similarity-based detection is how near-duplicates get found.</p>
+            </div>
+
+            <div class="tabs__panel panel" role="tabpanel" id="panel-images" aria-labelledby="tab-images" tabindex="0" hidden>
+              <h3>Images</h3>
+              <p>Complex and multilayered images, including:</p>
+              <ul class="ticks">
+                <li>CAD</li>
+                <li>PSD</li>
+                <li>Figma</li>
+                <li>Detailed 3D graphics</li>
+                <li>STEM and technical infographic imagery</li>
+              </ul>
+              <p class="note">These formats carry structure, such as layers, vectors, and scenes, that ordinary image pipelines flatten or drop.</p>
+            </div>
+
+            <div class="tabs__panel panel" role="tabpanel" id="panel-video" aria-labelledby="tab-video" tabindex="0" hidden>
+              <h3>Video</h3>
+              <ul class="ticks">
+                <li>Codec handling</li>
+                <li>Animation analysis</li>
+                <li>Language detection</li>
+                <li>AI-generated video detection</li>
+                <li>Video-processing workflows</li>
+              </ul>
+              <p class="note">AI-generated video detection connects to my research project, <a href="#saga">SAGA</a>.</p>
+            </div>
+
+            <div class="tabs__panel panel" role="tabpanel" id="panel-medical" aria-labelledby="tab-medical" tabindex="0" hidden>
+              <h3>Medical data</h3>
+              <ul class="ticks">
+                <li>DICOM filtering</li>
+                <li>Medical-data processing workflows</li>
+              </ul>
+              <p class="note">DICOM files carry rich metadata, which makes filtering and PII handling part of the job.</p>
+            </div>
+
+            <div class="tabs__panel panel" role="tabpanel" id="panel-infra" aria-labelledby="tab-infra" tabindex="0" hidden>
+              <h3>Automation and infrastructure</h3>
+              <ul class="ticks">
+                <li>Python scripting</li>
+                <li>Browser automation and testing</li>
+                <li>Remote processing</li>
+                <li>Working across multiple remote environments</li>
+                <li>NAS archival</li>
+                <li>Data movement</li>
+                <li>Operational tooling</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DATA ENGINEERING ============ -->
+    <section class="sheet" id="data" data-sheet="data" data-nav-target="experience" data-rail-label="data" aria-labelledby="data-title">
+      <div class="wrap sheet__grid">
+        <div class="sheet__tab"><span class="sheet__idx mono">03</span><span class="sheet__name mono">data</span></div>
+        <div class="sheet__body">
+          <h2 id="data-title" class="h2">The infrastructure behind an AI dataset</h2>
+          <div class="prose prose--wide">
+            <p>
+              A model is only as good as what it was trained and tested on. My work at InfoBay.AI exposed me to the
+              practical machinery around that: where data comes from, how it moves, what gets rejected, and how the
+              survivors are stored. That is the part of AI that rarely shows up in demos.
+            </p>
+          </div>
+
+          <figure class="pipe panel">
+            <canvas id="data-canvas" aria-hidden="true"></canvas>
+            <figcaption class="pipe__cap">
+              <span class="chip chip--note">Illustration</span>
+              <span>Particles are records. Amber ones are rejected along the way. The stream narrows because most raw data doesn't survive. No real volumes are shown.</span>
+            </figcaption>
+          </figure>
+
+          <div class="stages" role="group" aria-label="Pipeline stages. Select one for details.">
+            <button type="button" data-dstage="0">source</button>
+            <button type="button" data-dstage="1">procurement</button>
+            <button type="button" data-dstage="2">filtering</button>
+            <button type="button" data-dstage="3">quality control</button>
+            <button type="button" data-dstage="4">deduplication</button>
+            <button type="button" data-dstage="5">transformation</button>
+            <button type="button" data-dstage="6">processing</button>
+            <button type="button" data-dstage="7">archival</button>
+            <button type="button" data-dstage="8">AI dataset</button>
+          </div>
+          <p class="readout" id="data-readout" aria-live="polite">Select a stage to see what happens there.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SYSTEMS ============ -->
+    <section class="sheet" id="systems" data-sheet="systems" data-rail-label="systems" aria-labelledby="systems-title">
+      <div class="wrap sheet__grid">
+        <div class="sheet__tab"><span class="sheet__idx mono">04</span><span class="sheet__name mono">systems</span></div>
+        <div class="sheet__body">
+          <h2 id="systems-title" class="h2">AI systems and agents</h2>
+          <div class="prose prose--wide">
+            <p>Two systems I'm designing and building. Each diagram is interactive: hover a technology to see where it sits, or run the walkthrough.</p>
+          </div>
+
+          <!-- AI Knowledge Platform -->
+          <article class="case" id="knowledge-platform" aria-labelledby="kp-title">
+            <header class="case__head">
+              <h3 id="kp-title" class="case__title">AI Knowledge Platform</h3>
+              <p class="chips"><span class="chip chip--note">Architecture</span></p>
+            </header>
+            <div class="prose prose--wide">
+              <p>
+                A retrieval and reasoning service built around a planner, hybrid retrieval, reranking, and a reasoning
+                step that produces the final response. Conversational memory and evaluation are part of the design, and
+                I'm using it as a place to experiment with LoRA and QLoRA.
+              </p>
+            </div>
+
+            <div class="techs" role="group" aria-label="Technologies. Hover or focus one to highlight where it sits in the diagram.">
+              <button type="button" class="tag" data-tag="fastapi">FastAPI</button>
+              <button type="button" class="tag" data-tag="langgraph">LangGraph</button>
+              <button type="button" class="tag" data-tag="mcp">MCP</button>
+              <button type="button" class="tag" data-tag="qdrant">Qdrant</button>
+              <button type="button" class="tag" data-tag="postgresql">PostgreSQL</button>
+              <button type="button" class="tag" data-tag="bm25">BM25</button>
+              <button type="button" class="tag" data-tag="embeddings">Embeddings</button>
+              <button type="button" class="tag" data-tag="reranking">Reranking</button>
+            </div>
+
+            <div class="flow panel" data-flow="rag">
+              <ol class="flow__track">
+                <li class="flow__stage">
+                  <button type="button" class="node" data-tech="fastapi" data-desc="The entry point. A question arrives through the API layer.">
+                    <span class="node__name">user</span><span class="node__sub">asks a question</span>
+                  </button>
+                </li>
+                <li class="flow__stage">
+                  <button type="button" class="node" data-tech="langgraph" data-desc="Planning. The graph decides what needs to be found and which tools to call.">
+                    <span class="node__name">planner</span><span class="node__sub">decides the approach</span>
+                  </button>
+                </li>
+                <li class="flow__stage">
+                  <span class="flow__label mono">retrieval</span>
+                  <button type="button" class="node" data-tech="bm25 mcp" data-desc="Lexical retrieval. BM25 is strong when the exact words matter.">
+                    <span class="node__name">BM25</span><span class="node__sub">keyword match</span>
+                  </button>
+                  <button type="button" class="node" data-tech="qdrant embeddings mcp" data-desc="Semantic retrieval. The query is embedded and nearest neighbours are found in Qdrant.">
+                    <span class="node__name">semantic</span><span class="node__sub">embeddings + vectors</span>
+                  </button>
+                </li>
+                <li class="flow__stage">
+                  <button type="button" class="node" data-tech="reranking" data-desc="Reranking. Candidates from both retrievers are merged and reordered against the full question.">
+                    <span class="node__name">reranking</span><span class="node__sub">orders candidates</span>
+                  </button>
+                </li>
+                <li class="flow__stage">
+                  <button type="button" class="node" data-tech="langgraph" data-desc="Reasoning. The strongest passages are used to work out the answer.">
+                    <span class="node__name">reasoning</span><span class="node__sub">writes from evidence</span>
+                  </button>
+                </li>
+                <li class="flow__stage">
+                  <button type="button" class="node" data-tech="fastapi" data-desc="Response. The answer goes back through the API.">
+                    <span class="node__name">response</span><span class="node__sub">answer returned</span>
+                  </button>
+                </li>
+              </ol>
+              <div class="flow__side">
+                <button type="button" class="node node--side" data-tech="postgresql" data-desc="Conversational memory, backed by PostgreSQL, so later turns can use earlier context.">
+                  <span class="node__name">memory</span><span class="node__sub">conversation state in PostgreSQL</span>
+                </button>
+              </div>
+              <p class="flow__readout" aria-live="polite">Select a stage for details.</p>
+              <div class="flow__ctl">
+                <button type="button" class="btn btn--small" data-play="rag">Run a sample query</button>
+              </div>
+            </div>
+
+            <div class="trace instrument" aria-live="polite">
+              <p class="trace__head mono">Illustrative trace. No model is running on this page.</p>
+              <ol class="trace__log mono" id="rag-trace"><li class="trace__idle">Run a sample query to see how a request moves through the stages.</li></ol>
+            </div>
+          </article>
+
+          <!-- Local Agentic Job Engine -->
+          <article class="case" id="job-engine" aria-labelledby="engine-title">
+            <header class="case__head">
+              <h3 id="engine-title" class="case__title">Local Agentic Job Engine</h3>
+              <p class="chips"><span class="chip chip--wip">In progress</span></p>
+            </header>
+            <div class="prose prose--wide">
+              <p>
+                A privacy-oriented, local multi-agent system that automates parts of the engineering job-application
+                workflow. It's a personal systems project and an experiment in local, privacy-conscious, resilient
+                browser automation. It is not a finished production system.
+              </p>
+            </div>
+
+            <blockquote class="principle">
+              Use deterministic automation whenever the workflow is known, and use agents only when deterministic
+              automation cannot reliably handle the situation.
+            </blockquote>
+
+            <div class="techs" role="group" aria-label="Technologies. Hover or focus one to highlight where it sits in the diagram.">
+              <button type="button" class="tag" data-tag="langgraph">LangGraph</button>
+              <button type="button" class="tag" data-tag="vllm">vLLM</button>
+              <button type="button" class="tag" data-tag="qwen">Qwen 2.5 Coder</button>
+              <button type="button" class="tag" data-tag="deepseek">DeepSeek-R1-Distill-Qwen</button>
+              <button type="button" class="tag" data-tag="pydantic">Pydantic</button>
+              <button type="button" class="tag" data-tag="sqlite">SQLite</button>
+              <button type="button" class="tag" data-tag="playwright">Playwright</button>
+              <button type="button" class="tag" data-tag="browser-use">Browser Use</button>
+              <button type="button" class="tag" data-tag="camoufox">Camoufox</button>
+              <button type="button" class="tag" data-tag="mcp">MCP</button>
+              <button type="button" class="tag" data-tag="docker">Docker</button>
+            </div>
+
+            <div class="engine" id="agentflow" data-scenario="known">
+              <div class="engine__ctl">
+                <div class="seg" role="group" aria-label="Scenario">
+                  <button type="button" class="seg__btn" data-scenario-btn="known" aria-pressed="true">Known workflow</button>
+                  <button type="button" class="seg__btn" data-scenario-btn="unknown" aria-pressed="false">Unknown workflow</button>
+                </div>
+                <button type="button" class="btn btn--small" data-agent-run>Run walkthrough</button>
+              </div>
+
+              <div class="engine__grid">
+                <ol class="engine__flow instrument" aria-label="Architecture, top to bottom">
+                  <li class="an" data-id="job" data-actor="runner"><span class="an__name mono">incoming job</span><span class="an__desc">A posting enters the system.</span></li>
+                  <li class="an" data-id="ingest" data-actor="runner"><span class="an__name mono">ingestion</span><span class="an__desc">Normalised into a structured record.</span></li>
+                  <li class="an" data-id="detect" data-actor="runner"><span class="an__name mono">URL / ATS detection</span><span class="an__desc">Identify which application system this is.</span></li>
+                  <li class="an" data-id="cache" data-actor="runner">
+                    <span class="an__name mono">cached deterministic workflow</span>
+                    <span class="an__desc">A stored, scripted path for systems already seen.</span>
+                    <span class="an__badge an__badge--hit mono">hit: replay the script</span>
+                    <span class="an__badge an__badge--miss mono">miss: hand over to an agent</span>
+                  </li>
+                  <li class="an-branch" aria-label="Agentic fallback, used only on a cache miss">
+                    <p class="an-branch__label mono">agentic fallback, used only on a miss</p>
+                    <ol>
+                      <li class="an" data-id="llm" data-actor="llm" data-tech="langgraph vllm qwen"><span class="an__name mono">LLM agent</span><span class="an__desc">Takes over the unfamiliar form.</span></li>
+                      <li class="an" data-id="dom" data-actor="llm" data-tech="browser-use playwright mcp"><span class="an__name mono">DOM / AXTree</span><span class="an__desc">Reads the page structure and accessibility tree.</span></li>
+                      <li class="an" data-id="reason" data-actor="reasoner" data-tech="langgraph vllm deepseek"><span class="an__name mono">reasoning agent</span><span class="an__desc">Decides the next action from what it sees.</span></li>
+                    </ol>
+                  </li>
+                  <li class="an" data-id="act" data-actor="runner" data-tech="playwright browser-use camoufox mcp"><span class="an__name mono">browser automation</span><span class="an__desc">Drives the browser to fill the form.</span></li>
+                  <li class="an" data-id="validate" data-actor="runner" data-tech="pydantic"><span class="an__name mono">validation</span><span class="an__desc">Checks every field against a schema before anything is sent.</span></li>
+                  <li class="an" data-id="approve" data-actor="human"><span class="an__name mono">submit / human approval</span><span class="an__desc">A person decides whether it goes out.</span></li>
+                  <li class="an" data-id="track" data-actor="runner" data-tech="sqlite"><span class="an__name mono">tracker</span><span class="an__desc">Records what happened.</span></li>
+                </ol>
+
+                <div class="engine__side">
+                  <div class="actors instrument" aria-label="Who is acting right now">
+                    <p class="actors__head mono">who is acting</p>
+                    <ul>
+                      <li class="actor" data-actor="runner">deterministic runner</li>
+                      <li class="actor" data-actor="llm">LLM agent</li>
+                      <li class="actor" data-actor="reasoner">reasoning agent</li>
+                      <li class="actor" data-actor="human">human</li>
+                    </ul>
+                  </div>
+                  <div class="trace instrument" aria-live="polite">
+                    <p class="trace__head mono">Walkthrough of the intended flow. Nothing is executing.</p>
+                    <ol class="trace__log mono" id="agent-log"><li class="trace__idle">Pick a scenario and run the walkthrough.</li></ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="engine__meta">
+              <div class="sandbox" aria-label="Container isolation model">
+                <div class="sandbox__io mono"><strong>input data</strong><span>read-only</span></div>
+                <div class="sandbox__box">
+                  <p class="mono"><strong>docker container</strong></p>
+                  <ul class="mono">
+                    <li>non-root user</li>
+                    <li>restricted mounts</li>
+                    <li>local inference</li>
+                  </ul>
+                </div>
+                <div class="sandbox__io mono"><strong>output directory</strong><span>write-only</span></div>
+              </div>
+              <div class="prose">
+                <h4>Security architecture</h4>
+                <p>
+                  A non-root container, restricted mounts, read-only input data, a write-only output directory, and
+                  local inference. These choices reduce exposure. They don't make the system perfectly secure, and
+                  nothing here is a claim about getting past anti-bot systems.
+                </p>
+                <h4>Hardware target</h4>
+                <p>An RTX 5070 with 12 GB of VRAM, which is why the models are small, quantisable, and served locally with vLLM.</p>
+              </div>
+            </div>
+
+            <div class="metrics">
+              <h4>What I plan to measure</h4>
+              <table>
+                <caption class="sr-only">Planned benchmark metrics for the Local Agentic Job Engine. None have been measured yet.</caption>
+                <thead><tr><th scope="col">Metric</th><th scope="col">What it tells me</th><th scope="col">Status</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Application completion rate</th><td>How often a started application reaches a valid submission.</td><td><span class="chip chip--wip">Implementation in progress</span></td></tr>
+                  <tr><th scope="row">Human intervention rate</th><td>How often a person has to step in.</td><td><span class="chip chip--wip">Implementation in progress</span></td></tr>
+                  <tr><th scope="row">Workflow recovery rate</th><td>How often a failed step recovers without help.</td><td><span class="chip chip--wip">Implementation in progress</span></td></tr>
+                  <tr><th scope="row">Model calls per application</th><td>The cost of using agents at all.</td><td><span class="chip chip--wip">Implementation in progress</span></td></tr>
+                  <tr><th scope="row">Latency</th><td>Time from posting to ready-for-approval.</td><td><span class="chip chip--wip">Implementation in progress</span></td></tr>
+                  <tr><th scope="row">VRAM usage</th><td>Peak memory on the 12 GB target.</td><td><span class="chip chip--wip">Implementation in progress</span></td></tr>
+                  <tr><th scope="row">Deterministic vs agentic ratio</th><td>How much work the cached workflows absorb.</td><td><span class="chip chip--wip">Implementation in progress</span></td></tr>
+                </tbody>
+              </table>
+              <p class="note">No numbers appear here because none have been measured yet.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESEARCH ============ -->
+    <section class="sheet" id="research" data-sheet="research" data-rail-label="research" aria-labelledby="research-title">
+      <div class="wrap sheet__grid">
+        <div class="sheet__tab"><span class="sheet__idx mono">05</span><span class="sheet__name mono">research</span></div>
+        <div class="sheet__body">
+          <h2 id="research-title" class="h2">Research and evaluation</h2>
+
+          <!-- SAGA -->
+          <article class="case" id="saga" aria-labelledby="saga-title">
+            <header class="case__head">
+              <h3 id="saga-title" class="case__title">SAGA — Source Attribution of Generative AI Videos</h3>
+              <p class="chips">
+                <span class="chip chip--research">Research / Exploration</span>
+                <span class="chip chip--done">Phase 1 implemented: real vs AI</span>
+                <span class="chip chip--wip">Source attribution: open</span>
+              </p>
+            </header>
+
+            <div class="prose prose--wide">
+              <p>
+                A research and engineering project about identifying AI-generated video and investigating where it came
+                from. It combines video analysis, spatial and temporal transformations, and questions of provenance and
+                dataset quality.
+              </p>
+              <p>
+                Phase 1 has been implemented for real vs AI detection. Source attribution remains an active research
+                challenge, particularly because reliable attribution depends heavily on appropriately labeled and detailed
+                training and evaluation data.
+              </p>
+            </div>
+
+            <div class="flow flow--saga panel" data-flow="saga">
+              <ol class="flow__track">
+                <li class="flow__stage">
+                  <button type="button" class="node" data-desc="The input clip. Frames carry spatial evidence, and the order of frames carries temporal evidence.">
+                    <span class="node__name">video</span>
+                    <span class="frames" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                  </button>
+                </li>
+                <li class="flow__stage">
+                  <span class="flow__label mono">analysis</span>
+                  <button type="button" class="node" data-desc="Spatial transformations: what each frame looks like on its own.">
+                    <span class="node__name">spatial features</span><span class="node__sub">within a frame</span>
+                  </button>
+                  <button type="button" class="node" data-desc="Temporal transformations: how frames change across time.">
+                    <span class="node__name">temporal features</span><span class="node__sub">across frames</span>
+                  </button>
+                </li>
+                <li class="flow__stage">
+                  <button type="button" class="node" data-desc="Real vs AI detection. This is the part that is implemented (Phase 1).">
+                    <span class="node__name">AI / real detection</span><span class="node__sub">phase 1, implemented</span>
+                  </button>
+                </li>
+                <li class="flow__stage">
+                  <button type="button" class="node node--open" data-desc="Which generator or pipeline produced the video. An open research problem that needs detailed, reliable labels.">
+                    <span class="node__name">source attribution</span><span class="node__sub">open research problem</span>
+                  </button>
+                </li>
+              </ol>
+              <p class="flow__readout" aria-live="polite">Select a stage for details.</p>
+              <div class="flow__ctl"><button type="button" class="btn btn--small" data-play="saga">Play pipeline</button></div>
+            </div>
+
+            <div class="challenges">
+              <h4>Challenges I ran into</h4>
+              <details name="saga-challenge">
+                <summary>Real video with camera artifacts</summary>
+                <p>Sensor noise, compression, and stabilisation leave traces on genuine footage. A detector has to separate "unusual" from "generated", and those are not the same thing.</p>
+              </details>
+              <details name="saga-challenge">
+                <summary>Poor CGI and VFX</summary>
+                <p>Low-quality CGI can share visual tells with generated video. The question is about origin, not realism, which makes it harder than it sounds.</p>
+              </details>
+              <details name="saga-challenge">
+                <summary>AI-assisted CGI</summary>
+                <p>When artists use AI inside a traditional pipeline, it's no longer clear what "AI-generated" should mean. The label itself becomes ambiguous.</p>
+              </details>
+              <details name="saga-challenge">
+                <summary>AI content combined with traditional graphics</summary>
+                <p>Generated footage composited with conventional graphics blurs the source signal. One video can have several origins at once.</p>
+              </details>
+              <details name="saga-challenge">
+                <summary>Provenance loss</summary>
+                <p>Re-encoding, cropping, and re-uploading strip metadata and degrade the traces that attribution relies on.</p>
+              </details>
+              <details name="saga-challenge">
+                <summary>False positives</summary>
+                <p>Flagging real footage as AI has a real cost. It needs to be measured and analysed on its own, not averaged away inside one headline number.</p>
+              </details>
+              <details name="saga-challenge">
+                <summary>Dataset labeling</summary>
+                <p>Attribution needs labels that say which generator, which version, and what pipeline. Detailed labels like that are scarce and hard to verify.</p>
+              </details>
+            </div>
+            <p class="note">No accuracy figure appears on this page. I'd rather show the failure modes than a headline metric.</p>
+          </article>
+
+          <!-- Evaluation notebook -->
+          <article class="case" id="evaluation" aria-labelledby="eval-title">
+            <header class="case__head">
+              <h3 id="eval-title" class="case__title">AI Evaluation &amp; Research</h3>
+              <p class="chips"><span class="chip chip--research">Evolving direction</span></p>
+            </header>
+            <div class="prose prose--wide">
+              <p>
+                This is a direction I'm growing into, not a credential. I'm interested in how models behave, where they
+                break, and how to measure that honestly. Topics I'm reading about and experimenting with:
+              </p>
+            </div>
+            <ul class="topics" aria-label="Topics of interest">
+              <li>model evaluation</li><li>AI behavior</li><li>robustness</li><li>alignment fundamentals</li>
+              <li>interpretability</li><li>evaluation methodology</li><li>benchmarking</li><li>failure analysis</li><li>scalable oversight</li>
             </ul>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Tanmay Khanna</h1>
-            <h2>Full Stack Developer</h2>
-            <p>Building modern web applications with clean code and elegant design. Passionate about creating user-friendly experiences.</p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            <div class="notebook" id="notebook">
+              <ol class="notebook__steps" aria-label="The evaluation loop. Select a step to read a page from the notebook.">
+                <li><button type="button" data-nb="0" aria-pressed="true">model</button></li>
+                <li><button type="button" data-nb="1" aria-pressed="false">evaluation</button></li>
+                <li><button type="button" data-nb="2" aria-pressed="false">failure</button></li>
+                <li><button type="button" data-nb="3" aria-pressed="false">analysis</button></li>
+                <li><button type="button" data-nb="4" aria-pressed="false">hypothesis</button></li>
+                <li><button type="button" data-nb="5" aria-pressed="false">experiment</button></li>
+                <li><button type="button" data-nb="6" aria-pressed="false">measurement</button></li>
+                <li><button type="button" data-nb="7" aria-pressed="false">iteration</button></li>
+              </ol>
+              <div class="notebook__page" aria-live="polite">
+                <p class="notebook__step mono" data-nb-step>model</p>
+                <p class="notebook__text" data-nb-text></p>
+                <p class="notebook__eg mono" data-nb-eg></p>
+                <p class="notebook__foot mono">Illustrative example of the method, not a reported result.</p>
+              </div>
+              <div class="notebook__ctl"><button type="button" class="btn btn--small" data-nb-run>Run the loop</button></div>
             </div>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>Hello! I'm Tanmay, a passionate developer focused on creating exceptional digital experiences. I enjoy bringing ideas to life through code and design.</p>
-                <p>My journey in web development started with a curiosity about how things work on the internet, and has evolved into a career where I continuously learn and adapt to new technologies.</p>
-                <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.</p>
-            </div>
-            <div class="about-image">
-                <div class="profile-img">SK</div>
-            </div>
-        </div>
-    </section>
+    <!-- ============ OPEN SOURCE ============ -->
+    <section class="sheet" id="opensource" data-sheet="opensource" data-rail-label="open source" aria-labelledby="oss-title">
+      <div class="wrap sheet__grid">
+        <div class="sheet__tab"><span class="sheet__idx mono">06</span><span class="sheet__name mono">open source</span></div>
+        <div class="sheet__body">
+          <h2 id="oss-title" class="h2">Open source</h2>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2 class="section-title">Skills & Technologies</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3>Frontend</h3>
-                <ul>
-                    <li>HTML5 & CSS3</li>
-                    <li>JavaScript (ES6+)</li>
-                    <li>React.js</li>
-                    <li>Next.js</li>
-                    <li>Responsive Design</li>
-                    <li>Bootstrap/Tailwind</li>
+          <article class="case" aria-labelledby="caravan-title">
+            <header class="case__head">
+              <h3 id="caravan-title" class="case__title">Unchained Caravan</h3>
+              <p class="chips"><span class="chip chip--done">Contribution</span></p>
+            </header>
+            <div class="oss__grid">
+              <div class="prose">
+                <p>
+                  Caravan is an open-source Bitcoin multisig coordinator. I worked in its monorepo on maintainability
+                  and the interface.
+                </p>
+                <ul class="ticks ticks--tall">
+                  <li>
+                    Refactored the UTXO and Coin structures into a single unified type for maintainability. Tracked in
+                    <a href="https://github.com/caravan-bitcoin/caravan/issues/386" target="_blank" rel="noopener noreferrer">issue #386<span class="sr-only"> (opens in a new tab)</span></a>
+                    and
+                    <a href="https://github.com/caravan-bitcoin/caravan/pull/463" target="_blank" rel="noopener noreferrer">pull request #463<span class="sr-only"> (opens in a new tab)</span></a>.
+                  </li>
+                  <li>Migrated ESLint from v7 to v9.</li>
+                  <li>Contributed responsive UI improvements using React, JavaScript, and Tailwind.</li>
                 </ul>
-            </div>
-            <div class="skill-card">
-                <h3>Backend</h3>
-                <ul>
-                    <li>Node.js</li>
-                    <li>Express.js</li>
-                    <li>Python</li>
-                    <li>RESTful APIs</li>
-                    <li>Database Design</li>
+                <p class="links">
+                  <a href="https://github.com/TomLucasakaTGeek/caravan" target="_blank" rel="noopener noreferrer">My fork<span class="sr-only"> (opens in a new tab)</span></a>
+                  <a href="https://github.com/caravan-bitcoin/caravan" target="_blank" rel="noopener noreferrer">Upstream repository<span class="sr-only"> (opens in a new tab)</span></a>
+                </p>
+              </div>
+
+              <div class="cmap panel" id="caravan-map">
+                <p class="cmap__hint mono">Where I worked in the codebase. Select the root to expand it.</p>
+                <button type="button" class="cmap__root mono" aria-expanded="false" aria-controls="cmap-list">caravan monorepo</button>
+                <ul class="cmap__list" id="cmap-list" hidden>
+                  <li><button type="button" class="cmap__mod" aria-expanded="false"><span class="mono">UTXO / Coin types</span></button><p hidden>Two overlapping representations consolidated into one shared type, so changes happen in one place.</p></li>
+                  <li><button type="button" class="cmap__mod" aria-expanded="false"><span class="mono">lint tooling</span></button><p hidden>ESLint moved from v7 to v9, including the configuration changes that come with it.</p></li>
+                  <li><button type="button" class="cmap__mod" aria-expanded="false"><span class="mono">responsive UI</span></button><p hidden>Layout improvements so the interface works on smaller screens, in React with Tailwind.</p></li>
+                  <li><button type="button" class="cmap__mod" aria-expanded="false"><span class="mono">maintainability</span></button><p hidden>Smaller, clearer structures that are easier for the next contributor to read.</p></li>
                 </ul>
+              </div>
             </div>
-            <div class="skill-card">
-                <h3>Tools & Others</h3>
-                <ul>
-                    <li>Git & GitHub</li>
-                    <li>MongoDB/MySQL</li>
-                    <li>VS Code</li>
-                    <li>Figma</li>
-                    <li>Agile/Scrum</li>
+          </article>
+
+          <article class="case case--explore" id="frappe" aria-labelledby="frappe-title">
+            <header class="case__head">
+              <h3 id="frappe-title" class="case__title">Currently exploring: Frappe and ERPNext</h3>
+              <p class="chips"><span class="chip chip--wip">Exploration / Active work</span></p>
+            </header>
+            <div class="prose prose--wide">
+              <p>
+                This is exploration, not a finished contribution. I'm not claiming any merged work here.
+              </p>
+            </div>
+            <ul class="ticks ticks--tall">
+              <li>Studying the <a href="https://github.com/frappe/erpnext" target="_blank" rel="noopener noreferrer">Frappe / ERPNext<span class="sr-only"> (opens in a new tab)</span></a> codebase</li>
+              <li>Investigating issue #57313</li>
+              <li>Investigating issue #57315</li>
+              <li>Understanding the existing architecture</li>
+              <li>Preparing potential fixes and contributions</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="sheet" id="projects" data-sheet="projects" data-rail-label="projects" aria-labelledby="projects-title">
+      <div class="wrap sheet__grid">
+        <div class="sheet__tab"><span class="sheet__idx mono">07</span><span class="sheet__name mono">projects</span></div>
+        <div class="sheet__body">
+          <h2 id="projects-title" class="h2">Software projects</h2>
+
+          <!-- JerrIt -->
+          <article class="case" id="jerrit" aria-labelledby="jerrit-title">
+            <header class="case__head">
+              <h3 id="jerrit-title" class="case__title">JerrIt</h3>
+              <p class="chips"><span class="chip chip--done">Public</span></p>
+            </header>
+            <div class="proj__grid">
+              <div class="prose">
+                <p>
+                  An Express.js server scaffolding library, run as a CLI. It sets up a production-shaped backend in one
+                  command: project structure, dependencies, database wiring, and an optional AI module.
+                </p>
+                <p class="tags-inline mono">Node.js, TypeScript, Express, MySQL, MongoDB, GenAI module, CLI</p>
+                <ul class="ticks">
+                  <li>Scaffolding and project structure</li>
+                  <li>Dependency management</li>
+                  <li>TypeScript support</li>
+                  <li>Plugin-based backend architecture</li>
+                  <li>Documentation</li>
                 </ul>
+                <p class="links">
+                  <a href="https://github.com/TomLucasakaTGeek/JerrIt" target="_blank" rel="noopener noreferrer">JerrIt on GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+                </p>
+              </div>
+
+              <div class="scaffold instrument" id="jerrit-scaffold">
+                <p class="scaffold__cmd mono"><span class="term__p">$</span> npx create-jerry</p>
+                <div class="scaffold__opts">
+                  <fieldset>
+                    <legend class="mono">database</legend>
+                    <label><input type="radio" name="jdb" value="mongo" checked> MongoDB</label>
+                    <label><input type="radio" name="jdb" value="mysql"> MySQL</label>
+                  </fieldset>
+                  <fieldset>
+                    <legend class="mono">language</legend>
+                    <label><input type="radio" name="jlang" value="js" checked> JavaScript</label>
+                    <label><input type="radio" name="jlang" value="ts"> TypeScript</label>
+                  </fieldset>
+                  <fieldset>
+                    <legend class="mono">AI module</legend>
+                    <label><input type="radio" name="jai" value="no" checked> No</label>
+                    <label><input type="radio" name="jai" value="yes"> Yes</label>
+                  </fieldset>
+                </div>
+                <pre class="scaffold__tree mono" aria-live="polite" data-scaffold-tree></pre>
+                <p class="scaffold__note mono" data-scaffold-note></p>
+                <p class="scaffold__src mono">Structure as documented in the project README.</p>
+              </div>
             </div>
+          </article>
+
+          <!-- Zwip-AI -->
+          <article class="case" id="zwip" aria-labelledby="zwip-title">
+            <header class="case__head">
+              <h3 id="zwip-title" class="case__title">Zwip-AI</h3>
+              <p class="chips"><span class="chip chip--done">Public</span></p>
+            </header>
+            <div class="proj__grid">
+              <div class="prose">
+                <p>A full-stack AI services platform with a separate frontend and backend, user authentication, and persistence.</p>
+                <ul class="ticks">
+                  <li>Article generation</li>
+                  <li>Image generation</li>
+                  <li>Resume review</li>
+                  <li>Background removal</li>
+                  <li>Authentication and OAuth</li>
+                </ul>
+                <p class="links">
+                  <a href="https://github.com/TomLucasakaTGeek/zwip" target="_blank" rel="noopener noreferrer">Zwip-AI on GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+                </p>
+              </div>
+              <div class="layers panel" aria-label="Layers of the application. Hover a layer to highlight its technologies.">
+                <div class="layer" data-layer="client"><span class="layer__name mono">client</span><span class="layer__tech"><span class="tag tag--static" data-tag="react">React</span><span class="tag tag--static" data-tag="clerk">Clerk</span></span></div>
+                <div class="layer" data-layer="api"><span class="layer__name mono">API</span><span class="layer__tech"><span class="tag tag--static" data-tag="nodejs">Node.js</span><span class="tag tag--static" data-tag="express">Express</span></span></div>
+                <div class="layer" data-layer="data"><span class="layer__name mono">data</span><span class="layer__tech"><span class="tag tag--static" data-tag="postgresql">PostgreSQL</span></span></div>
+                <div class="layer" data-layer="services"><span class="layer__name mono">AI and media services</span><span class="layer__tech"><span class="tag tag--static" data-tag="gemini">Gemini</span><span class="tag tag--static" data-tag="clipdrop">Clipdrop</span><span class="tag tag--static" data-tag="cloudinary">Cloudinary</span></span></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- More work -->
+          <div class="more" id="more-work">
+            <h3 class="more__title">More work</h3>
+            <ul class="more__list">
+              <li>
+                <div>
+                  <h4><a href="https://github.com/TomLucasakaTGeek/Stream_IT" target="_blank" rel="noopener noreferrer">StreamBit<span class="sr-only"> (opens in a new tab)</span></a></h4>
+                  <p class="mono more__stack">TypeScript</p>
+                </div>
+                <p>A live-streaming platform with Lightning and Bitcoin payments, using QR codes and payment receipts.</p>
+              </li>
+              <li>
+                <div>
+                  <h4><a href="https://github.com/TomLucasakaTGeek/Bitcoin-implementation" target="_blank" rel="noopener noreferrer">Bitcoin implementation<span class="sr-only"> (opens in a new tab)</span></a></h4>
+                  <p class="mono more__stack">Python</p>
+                </div>
+                <p>Bitcoin concepts built from scratch in Python: how Bitcoin works, how Bitcoin Script works, and a take on the transaction optimization problem.</p>
+              </li>
+              <li>
+                <div>
+                  <h4><a href="https://github.com/TomLucasakaTGeek/Argo_GitOps" target="_blank" rel="noopener noreferrer">Argo GitOps<span class="sr-only"> (opens in a new tab)</span></a></h4>
+                  <p class="mono more__stack">Docker, Kubernetes, Argo CD</p>
+                </div>
+                <p>A DevOps project that containerises a simple Express app, deploys it to a Kubernetes cluster with Argo CD, and manages a canary release with Argo Rollouts. The README documents each step and the difficulties I hit.</p>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image">🚀</div>
-                <div class="project-content">
-                    <h3>E-Commerce Platform</h3>
-                    <p>A full-featured online shopping platform with cart functionality, payment integration, and admin dashboard.</p>
-                    <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">MongoDB</span>
-                    </div>
-                </div>
+    <!-- ============ SKILLS ============ -->
+    <section class="sheet" id="skills" data-sheet="skills" data-nav-target="projects" data-rail-label="skills" aria-labelledby="skills-title">
+      <div class="wrap sheet__grid">
+        <div class="sheet__tab"><span class="sheet__idx mono">08</span><span class="sheet__name mono">skills</span></div>
+        <div class="sheet__body">
+          <h2 id="skills-title" class="h2">Skills, grouped by what they're for</h2>
+          <div class="prose prose--wide">
+            <p>Not ranked. Depth varies: some of these I use constantly, some I've used on a project or two, and a few I'm still learning.</p>
+          </div>
+          <dl class="skills">
+            <div>
+              <dt>Languages</dt>
+              <dd><ul><li data-tag="python">Python</li><li data-tag="javascript">JavaScript</li><li data-tag="typescript">TypeScript</li><li data-tag="java">Java</li></ul></dd>
             </div>
-            <div class="project-card">
-                <div class="project-image">📱</div>
-                <div class="project-content">
-                    <h3>Task Management App</h3>
-                    <p>A responsive task management application with real-time updates and collaborative features.</p>
-                    <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Firebase</span>
-                        <span class="tag">CSS3</span>
-                    </div>
-                </div>
+            <div>
+              <dt>Backend</dt>
+              <dd><ul><li data-tag="nodejs">Node.js</li><li data-tag="express">Express</li><li data-tag="fastapi">FastAPI</li><li>REST APIs</li></ul></dd>
             </div>
-            <div class="project-card">
-                <div class="project-image">🎨</div>
-                <div class="project-content">
-                    <h3>Portfolio Website</h3>
-                    <p>A modern, responsive portfolio website showcasing projects and skills with smooth animations.</p>
-                    <div class="project-tags">
-                        <span class="tag">HTML5</span>
-                        <span class="tag">CSS3</span>
-                        <span class="tag">JavaScript</span>
-                    </div>
-                </div>
+            <div>
+              <dt>AI systems</dt>
+              <dd><ul><li>LLMs</li><li>RAG</li><li>Agents</li><li data-tag="langgraph">LangGraph</li><li data-tag="mcp">MCP</li><li data-tag="embeddings">Embeddings</li><li data-tag="qdrant">Qdrant</li><li data-tag="bm25">BM25</li><li data-tag="reranking">Reranking</li><li>LoRA</li><li>QLoRA</li></ul></dd>
             </div>
+            <div>
+              <dt>Data</dt>
+              <dd><ul><li data-tag="postgresql">PostgreSQL</li><li>MySQL</li><li>MongoDB</li><li data-tag="sqlite">SQLite</li><li>Multimodal data processing</li><li>Deduplication</li><li>Metadata processing</li></ul></dd>
+            </div>
+            <div>
+              <dt>Infrastructure</dt>
+              <dd><ul><li data-tag="docker">Docker</li><li>Git</li><li>GitHub Actions</li><li>Remote environments</li><li>NAS</li><li>CI/CD concepts</li></ul></dd>
+            </div>
+            <div>
+              <dt>Automation</dt>
+              <dd><ul><li data-tag="playwright">Playwright</li><li>Browser automation</li><li data-tag="browser-use">Browser Use</li><li data-tag="camoufox">Camoufox</li></ul></dd>
+            </div>
+            <div>
+              <dt>Frontend</dt>
+              <dd><ul><li>HTML</li><li>CSS</li><li data-tag="javascript">JavaScript</li><li data-tag="react">React</li></ul></dd>
+            </div>
+          </dl>
         </div>
+      </div>
     </section>
 
-    <!-- Certificates Section -->
-    <section id="certificates">
-        <h2 class="section-title">Certificates & Achievements</h2>
-        <div class="certificates-wrapper">
-            <div class="certificates-scroll">
-                <div class="certificate-card">
-                    <div class="certificate-image">🎓</div>
-                    <div class="certificate-content">
-                        <h3>Web Development Bootcamp</h3>
-                        <p class="certificate-issuer">Udemy</p>
-                        <p class="certificate-date">January 2024</p>
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">🏆</div>
-                    <div class="certificate-content">
-                        <h3>React - The Complete Guide</h3>
-                        <p class="certificate-issuer">Udemy</p>
-                        <p class="certificate-date">March 2024</p>
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">⭐</div>
-                    <div class="certificate-content">
-                        <h3>JavaScript Algorithms</h3>
-                        <p class="certificate-issuer">freeCodeCamp</p>
-                        <p class="certificate-date">May 2024</p>
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">📜</div>
-                    <div class="certificate-content">
-                        <h3>Node.js Developer</h3>
-                        <p class="certificate-issuer">Coursera</p>
-                        <p class="certificate-date">July 2024</p>
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">💎</div>
-                    <div class="certificate-content">
-                        <h3>MongoDB Certified Developer</h3>
-                        <p class="certificate-issuer">MongoDB University</p>
-                        <p class="certificate-date">September 2024</p>
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">🚀</div>
-                    <div class="certificate-content">
-                        <h3>Full Stack Development</h3>
-                        <p class="certificate-issuer">Codecademy</p>
-                        <p class="certificate-date">November 2024</p>
-                    </div>
-                </div>
-            </div>
+    <!-- ============ PROOF ============ -->
+    <section class="sheet" id="proof" data-sheet="proof" data-nav-target="projects" data-rail-label="github" aria-labelledby="proof-title">
+      <div class="wrap sheet__grid">
+        <div class="sheet__tab"><span class="sheet__idx mono">09</span><span class="sheet__name mono">github</span></div>
+        <div class="sheet__body">
+          <h2 id="proof-title" class="h2">Read the code</h2>
+          <div class="prose prose--wide">
+            <p>
+              My GitHub profile is the primary proof of work. Anything on this page that is public links to a
+              repository you can open. Work at InfoBay.AI is private, and for projects above without a repository link,
+              the write-up on this page is what is public so far.
+            </p>
+          </div>
+
+          <div class="repos instrument">
+            <p class="repos__cmd mono"><span class="term__p">$</span> gh repo list TomLucasakaTGeek</p>
+            <ul class="mono">
+              <li><a href="https://github.com/TomLucasakaTGeek/JerrIt" target="_blank" rel="noopener noreferrer">JerrIt<span class="sr-only"> (opens in a new tab)</span></a><span>Express server scaffolding CLI</span></li>
+              <li><a href="https://github.com/TomLucasakaTGeek/Bitcoin-implementation" target="_blank" rel="noopener noreferrer">Bitcoin-implementation<span class="sr-only"> (opens in a new tab)</span></a><span>Bitcoin from scratch, in Python</span></li>
+              <li><a href="https://github.com/TomLucasakaTGeek/caravan" target="_blank" rel="noopener noreferrer">caravan<span class="sr-only"> (opens in a new tab)</span></a><span>Fork of caravan-bitcoin/caravan</span></li>
+              <li><a href="https://github.com/TomLucasakaTGeek/Stream_IT" target="_blank" rel="noopener noreferrer">Stream_IT<span class="sr-only"> (opens in a new tab)</span></a><span>StreamBit, live streaming with payments</span></li>
+              <li><a href="https://github.com/TomLucasakaTGeek/zwip" target="_blank" rel="noopener noreferrer">zwip<span class="sr-only"> (opens in a new tab)</span></a><span>Zwip-AI, AI services platform</span></li>
+              <li><a href="https://github.com/TomLucasakaTGeek/Argo_GitOps" target="_blank" rel="noopener noreferrer">Argo_GitOps<span class="sr-only"> (opens in a new tab)</span></a><span>Canary releases with Argo CD</span></li>
+            </ul>
+          </div>
+          <p class="proof__cta">
+            <a class="btn btn--primary" href="https://github.com/TomLucasakaTGeek" target="_blank" rel="noopener noreferrer">Open my GitHub profile<span class="sr-only"> (opens in a new tab)</span></a>
+          </p>
         </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-content">
-            <p>I'm always open to new opportunities and collaborations. Feel free to reach out if you'd like to work together!</p>
-            <div class="contact-links">
-                <a href="mailto:khannatanmay21@gmail.com" class="contact-link">
-                    <span>📧</span>
-                    <span>Email</span>
-                </a>
-                <a href="https://github.com/TomLucasakaTGeek" class="contact-link" target="_blank">
-                    <span>💻</span>
-                    <span>GitHub</span>
-                </a>
-                <a href="https://linkedin.com/in/khannatanmay" class="contact-link" target="_blank">
-                    <span>💼</span>
-                    <span>LinkedIn</span>
-                </a>
-            </div>
+    <!-- ============ ENGINEERING LOG ============ -->
+    <section class="sheet" id="log" data-sheet="log" data-nav-target="projects" data-rail-label="log" aria-labelledby="log-title">
+      <div class="wrap sheet__grid">
+        <div class="sheet__tab"><span class="sheet__idx mono">10</span><span class="sheet__name mono">log</span></div>
+        <div class="sheet__body">
+          <h2 id="log-title" class="h2">Engineering log</h2>
+          <div class="prose prose--wide">
+            <p>
+              Notes from building, written in public: what I built, what broke, and what I measured. These are the
+              entries planned so far. None are written yet.
+            </p>
+          </div>
+          <ol class="log">
+            <li>
+              <span class="log__tag mono">[build]</span>
+              <h3>Local Agentic Job Engine</h3>
+              <span class="chip chip--soon">Coming soon</span>
+            </li>
+            <li>
+              <span class="log__tag mono">[research]</span>
+              <h3>Can AI-generated video be reliably separated from CGI?</h3>
+              <span class="chip chip--soon">Coming soon</span>
+            </li>
+            <li>
+              <span class="log__tag mono">[open source]</span>
+              <h3>Understanding Caravan's UTXO architecture</h3>
+              <span class="chip chip--soon">Coming soon</span>
+            </li>
+            <li>
+              <span class="log__tag mono">[systems]</span>
+              <h3>When should an agent not be used?</h3>
+              <span class="chip chip--soon">Coming soon</span>
+            </li>
+          </ol>
+          <p class="note">Themes I plan to write about: AI systems, agent architectures, RAG, evaluation, open source, system design, multimodal datasets, engineering experiments, and failure analysis.</p>
         </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Tanmay Khanna. All rights reserved.</p>
-    </footer>
+    <!-- ============ PRINCIPLES ============ -->
+    <section class="sheet" id="principles" data-sheet="principles" data-nav-target="contact" data-rail-label="principles" aria-labelledby="principles-title">
+      <div class="wrap sheet__grid">
+        <div class="sheet__tab"><span class="sheet__idx mono">11</span><span class="sheet__name mono">principles</span></div>
+        <div class="sheet__body">
+          <h2 id="principles-title" class="h2">How I work</h2>
+          <dl class="principles">
+            <div><dt>First principles</dt><dd>Understand the underlying system before adding abstraction.</dd></div>
+            <div><dt>Determinism before agents</dt><dd>Use deterministic systems wherever the workflow is known.</dd></div>
+            <div><dt>Measure before claiming</dt><dd>Experiments need metrics, failure analysis, and reproducibility.</dd></div>
+            <div><dt>Data is infrastructure</dt><dd>AI systems are constrained by the quality and structure of their data.</dd></div>
+            <div><dt>Build in public</dt><dd>Code, experiments, failures, and reasoning should become public proof of work when appropriate.</dd></div>
+            <div><dt>Open source as proof</dt><dd>Contributions should show that you can understand and modify real-world systems.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+    <!-- ============ CONTACT ============ -->
+    <section class="sheet sheet--last" id="contact" data-sheet="contact" data-rail-label="contact" aria-labelledby="contact-title">
+      <div class="wrap sheet__grid">
+        <div class="sheet__tab"><span class="sheet__idx mono">12</span><span class="sheet__name mono">contact</span></div>
+        <div class="sheet__body">
+          <h2 id="contact-title" class="statement statement--contact">Let's build something interesting.</h2>
+          <div class="prose prose--wide">
+            <p>
+              If you're working on data infrastructure, agent systems, evaluation, or open source, and this page
+              suggests I could be useful, I'd like to hear from you.
+            </p>
+          </div>
+          <ul class="contact">
+            <li><a href="https://github.com/TomLucasakaTGeek" target="_blank" rel="noopener noreferrer"><span class="contact__k">GitHub</span><span class="contact__v mono">github.com/TomLucasakaTGeek</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+            <li><a href="https://www.linkedin.com/in/khannatanmay/" target="_blank" rel="noopener noreferrer"><span class="contact__k">LinkedIn</span><span class="contact__v mono">linkedin.com/in/khannatanmay</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+            <li><a href="https://x.com/KTanmay_hex" target="_blank" rel="noopener noreferrer"><span class="contact__k">X</span><span class="contact__v mono">x.com/KTanmay_hex</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+            <li><a href="mailto:tanmaykhanna2003@gmail.com"><span class="contact__k">Email</span><span class="contact__v mono">tanmaykhanna2003@gmail.com</span></a></li>
+            <li><a href="tel:+917007409516"><span class="contact__k">Phone</span><span class="contact__v mono">+91 70074 09516</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        // Add scroll effect to navigation
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(15, 23, 42, 0.98)';
-            } else {
-                nav.style.background = 'rgba(15, 23, 42, 0.95)';
-            }
-        });
-    </script>
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div>
+        <p class="footer__name">Tanmay Khanna</p>
+        <p>AI Systems Engineer</p>
+      </div>
+      <p class="footer__line">Building systems across data, software, AI and open source.</p>
+      <p class="footer__copy mono">© 2026 Tanmay Khanna</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
